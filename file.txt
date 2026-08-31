@@ -34,7 +34,7 @@ GET /privacy → renders templates/privacy.html
 content appropriate for a personal expense tracking app.
 Include sections like: Data We Collect, How We Use Your Data,
 Data Storage, Third Party Services, and Contact Us.
-Match the style of terms.html.
+Match the style of @templates/terms.html.
 3. In @templates/landing.html, update the "Privacy Policy"
 footer link href from "#" to "/privacy".
 4. Make sure the appearance looks like the website's theme

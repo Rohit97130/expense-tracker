@@ -19,6 +19,15 @@
     --border: #e4e1da;
     --border-soft: #eeebe4;
 
+    --cat-transport: #4f7fe0;
+    --cat-transport-light: #eaf0fd;
+    --cat-health: #2f9e6b;
+    --cat-health-light: #e7f6ee;
+    --cat-entertainment: #d1548a;
+    --cat-entertainment-light: #fbe9f0;
+    --cat-other: #6b6b6b;
+    --cat-other-light: #ececec;
+
     --font-display: 'DM Serif Display', Georgia, serif;
     --font-body: 'DM Sans', system-ui, sans-serif;
 
@@ -662,6 +671,189 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ------------------------------------------------------------------ */
+/* Profile page                                                        */
+/* ------------------------------------------------------------------ */
+
+.profile-section {
+    padding: 3rem 2rem 5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.profile-name {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+}
+
+.profile-email {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+}
+
+.profile-since {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin-top: 0.25rem;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.profile-stat-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.profile-stat-label {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+
+.profile-stat-value {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--ink);
+}
+
+.profile-section-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+}
+
+.profile-transactions {
+    margin-bottom: 3rem;
+}
+
+.txn-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.txn-table th,
+.txn-table td {
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.txn-table th {
+    color: var(--ink-muted);
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.txn-table tbody tr:last-child td { border-bottom: none; }
+
+.txn-amount-col {
+    text-align: right;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.category-badge-food { background: var(--accent-2-light); color: var(--accent-2); }
+.category-badge-transport { background: var(--cat-transport-light); color: var(--cat-transport); }
+.category-badge-bills { background: var(--danger-light); color: var(--danger); }
+.category-badge-health { background: var(--cat-health-light); color: var(--cat-health); }
+.category-badge-entertainment { background: var(--cat-entertainment-light); color: var(--cat-entertainment); }
+.category-badge-shopping { background: var(--accent-light); color: var(--accent); }
+.category-badge-other { background: var(--cat-other-light); color: var(--cat-other); }
+
+.profile-categories {
+    margin-bottom: 2rem;
+}
+
+.category-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 90px;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+}
+
+.category-row-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+.category-bar-track {
+    height: 10px;
+    background: var(--border-soft);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.category-bar {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+.category-bar-food { background: var(--accent-2); }
+.category-bar-transport { background: var(--cat-transport); }
+.category-bar-bills { background: var(--danger); }
+.category-bar-health { background: var(--cat-health); }
+.category-bar-entertainment { background: var(--cat-entertainment); }
+.category-bar-shopping { background: var(--accent); }
+.category-bar-other { background: var(--cat-other); }
+
+.category-row-amount {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                          */
 /* ------------------------------------------------------------------ */
 
@@ -670,6 +862,9 @@ a { color: inherit; text-decoration: none; }
     .mock-stats { grid-template-columns: 1fr; }
 
     .features-inner { grid-template-columns: 1fr; }
+
+    .profile-stats { grid-template-columns: 1fr; }
+    .category-row { grid-template-columns: 100px 1fr 80px; }
 }
 
 @media (max-width: 600px) {
@@ -677,4 +872,7 @@ a { color: inherit; text-decoration: none; }
     .hero { padding: 3rem 1rem 2rem; }
     .hero-actions { flex-direction: column; }
     .hero-btn { width: 100%; text-align: center; }
+
+    .profile-header { flex-direction: column; text-align: center; }
+    .txn-table { display: block; overflow-x: auto; white-space: nowrap; }
 }

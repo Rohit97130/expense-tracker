@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-06T06:45:16.298Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 59250,
+      "turns": 4,
+      "files": 1,
+      "netLines": 0,
+      "toolCallsTotal": 3,
+      "toolSuccessRate": 100,
+      "totalCostUSD": 0.5007513,
+      "cacheReadCostUSD": 0.060078299999999994,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "rohit_jain3@epam.com",
+    "periodStart": "2026-09-06T06:09:29.100Z",
+    "periodEnd": "2026-09-06T06:10:28.350Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "f63718ad-3d10-4acb-9ddf-fd8feb7d6d6a",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "/seed-user",
+      "project": "C:\\expense-tracker",
+      "branch": "main",
+      "startTime": 1788674969100,
+      "durationMs": 59250,
+      "turns": 4,
+      "fileOps": 1,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 0,
+      "filesChanged": 0,
+      "filesWritten": 0,
+      "filesEdited": 0,
+      "toolCallsTotal": 3,
+      "toolCallsSuccess": 3,
+      "toolCallsFailure": 0,
+      "models": [
+        "claude-sonnet-5"
+      ],
+      "languages": [
+        "python"
+      ],
+      "tools": [
+        {
+          "toolName": "Skill",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Read",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Bash",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 3232,
+        "output": 927,
+        "cacheRead": 200261,
+        "cacheCreation": 69512,
+        "cacheCreation1h": 69512,
+        "total": 273932
+      },
+      "costUSD": 0.5007513,
+      "cacheReadCostUSD": 0.060078299999999994,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-5",
+          "tokens": {
+            "input": 3232,
+            "output": 927,
+            "cacheRead": 200261,
+            "cacheCreation": 69512,
+            "cacheCreation1h": 69512,
+            "total": 273932
+          },
+          "costUSD": 0.5007513,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "costSeries": [
+        {
+          "t": 1788674990881,
+          "cost": 0.395049,
+          "tokens": 67378
+        },
+        {
+          "t": 1788674994837,
+          "cost": 0.4351053,
+          "tokens": 134858
+        },
+        {
+          "t": 1788675003995,
+          "cost": 0.4743591,
+          "tokens": 204341
+        },
+        {
+          "t": 1788675028350,
+          "cost": 0.5007513,
+          "tokens": 273932
+        }
+      ],
+      "dispatches": [
+        {
+          "kind": "command",
+          "name": "seed-user",
+          "start": 1788674986037,
+          "durationMs": 0
+        },
+        {
+          "kind": "skill",
+          "name": "seed-user",
+          "start": 1788674990881,
+          "durationMs": 49,
+          "costUSD": 0.395049,
+          "tokens": {
+            "input": 3226,
+            "output": 51,
+            "cacheRead": 0,
+            "cacheCreation": 64101,
+            "cacheCreation1h": 64101,
+            "total": 67378
+          }
+        }
+      ],
+      "skillInvocations": [
+        {
+          "name": "seed-user",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0
+        }
+      ],
+      "agentInvocations": [],
+      "commandInvocations": [
+        {
+          "name": "seed-user",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0
+        }
+      ],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

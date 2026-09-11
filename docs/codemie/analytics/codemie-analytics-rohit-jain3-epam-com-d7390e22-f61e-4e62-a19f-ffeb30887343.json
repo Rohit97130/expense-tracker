@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-11T05:47:20.610Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 156441,
+      "turns": 1,
+      "files": 0,
+      "netLines": 0,
+      "toolCallsTotal": 0,
+      "toolSuccessRate": 0,
+      "totalCostUSD": 0,
+      "cacheReadCostUSD": 0,
+      "pricedSessions": 0
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 0,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "rohit_jain3@epam.com",
+    "periodStart": "2026-09-11T05:44:41.829Z",
+    "periodEnd": "2026-09-11T05:47:18.270Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "d7390e22-f61e-4e62-a19f-ffeb30887343",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "",
+      "project": "C:\\expense-tracker",
+      "branch": "main",
+      "startTime": 1789105481829,
+      "durationMs": 156441,
+      "turns": 1,
+      "fileOps": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 0,
+      "filesChanged": 0,
+      "filesWritten": 0,
+      "filesEdited": 0,
+      "toolCallsTotal": 0,
+      "toolCallsSuccess": 0,
+      "toolCallsFailure": 0,
+      "models": [
+        "<synthetic>"
+      ],
+      "languages": [],
+      "tools": [],
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "costUSD": 0,
+      "cacheReadCostUSD": 0,
+      "perModelCost": [],
+      "hadLog": true,
+      "dispatches": [
+        {
+          "kind": "command",
+          "name": "clear",
+          "start": 1789042944823,
+          "durationMs": 0
+        }
+      ],
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-13T06:41:22.501Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 612186,
+      "turns": 5,
+      "files": 2,
+      "netLines": 45,
+      "toolCallsTotal": 6,
+      "toolSuccessRate": 100,
+      "totalCostUSD": 0.5948331,
+      "cacheReadCostUSD": 0.08664209999999999,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "rohit_jain3@epam.com",
+    "periodStart": "2026-09-13T04:38:28.240Z",
+    "periodEnd": "2026-09-13T04:48:40.426Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "03be0b8a-5e03-458c-8c10-e1e5658455b3",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "/agents",
+      "project": "C:\\expense-tracker",
+      "branch": "feature/backend-routes-profile-page",
+      "startTime": 1789274308240,
+      "durationMs": 612186,
+      "turns": 5,
+      "fileOps": 2,
+      "linesAdded": 45,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 45,
+      "filesChanged": 1,
+      "filesWritten": 1,
+      "filesEdited": 0,
+      "toolCallsTotal": 6,
+      "toolCallsSuccess": 6,
+      "toolCallsFailure": 0,
+      "models": [
+        "claude-sonnet-5"
+      ],
+      "languages": [
+        "markdown"
+      ],
+      "tools": [
+        {
+          "toolName": "Bash",
+          "totalCalls": 3,
+          "successCount": 3,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Skill",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Read",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Write",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 3243,
+        "output": 2572,
+        "cacheRead": 288807,
+        "cacheCreation": 76647,
+        "cacheCreation1h": 76647,
+        "total": 371269
+      },
+      "costUSD": 0.5948331,
+      "cacheReadCostUSD": 0.08664209999999999,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-5",
+          "tokens": {
+            "input": 3243,
+            "output": 2572,
+            "cacheRead": 288807,
+            "cacheCreation": 76647,
+            "cacheCreation1h": 76647,
+            "total": 371269
+          },
+          "costUSD": 0.5948331,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "costSeries": [
+        {
+          "t": 1789274834437,
+          "cost": 0.415056,
+          "tokens": 70456
+        },
+        {
+          "t": 1789274843824,
+          "cost": 0.4692018,
+          "tokens": 142760
+        },
+        {
+          "t": 1789274850138,
+          "cost": 0.5099919,
+          "tokens": 217727
+        },
+        {
+          "t": 1789274888073,
+          "cost": 0.5578461,
+          "tokens": 294321
+        },
+        {
+          "t": 1789274920426,
+          "cost": 0.5948331,
+          "tokens": 371269
+        }
+      ],
+      "dispatches": [
+        {
+          "kind": "command",
+          "name": "agents",
+          "start": 1789274642169,
+          "durationMs": 0
+        },
+        {
+          "kind": "skill",
+          "name": "create-spec",
+          "start": 1789274834437,
+          "durationMs": 3721,
+          "costUSD": 0.415056,
+          "tokens": {
+            "input": 3235,
+            "output": 225,
+            "cacheRead": 0,
+            "cacheCreation": 66996,
+            "cacheCreation1h": 66996,
+            "total": 70456
+          }
+        }
+      ],
+      "skillInvocations": [
+        {
+          "name": "create-spec",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0
+        }
+      ],
+      "agentInvocations": [],
+      "commandInvocations": [
+        {
+          "name": "agents",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0
+        }
+      ],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

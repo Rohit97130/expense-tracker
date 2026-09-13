@@ -15,6 +15,26 @@
         </div>
     </div>
 
+    <div class="filter-bar">
+        <div class="filter-presets">
+            <a href="{{ url_for('profile', date_from=presets['month'][0], date_to=presets['month'][1]) }}"
+               class="filter-preset{{ ' active' if active_preset == 'month' else '' }}">This Month</a>
+            <a href="{{ url_for('profile', date_from=presets['3m'][0], date_to=presets['3m'][1]) }}"
+               class="filter-preset{{ ' active' if active_preset == '3m' else '' }}">Last 3 Months</a>
+            <a href="{{ url_for('profile', date_from=presets['6m'][0], date_to=presets['6m'][1]) }}"
+               class="filter-preset{{ ' active' if active_preset == '6m' else '' }}">Last 6 Months</a>
+            <a href="{{ url_for('profile') }}"
+               class="filter-preset{{ ' active' if active_preset == 'all' else '' }}">All Time</a>
+        </div>
+        <form method="get" action="{{ url_for('profile') }}" class="filter-custom-range">
+            <label for="date_from">From</label>
+            <input type="date" id="date_from" name="date_from" value="{{ date_from or '' }}">
+            <label for="date_to">To</label>
+            <input type="date" id="date_to" name="date_to" value="{{ date_to or '' }}">
+            <button type="submit" class="filter-apply">Apply</button>
+        </form>
+    </div>
+
     <div class="profile-stats">
         {% for stat in stats %}
         <div class="profile-stat-card">

@@ -1,9 +1,16 @@
 import os
+from datetime import date, datetime
 
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from database.db import get_db, init_db, seed_db
+from database.queries import (
+    get_category_breakdown,
+    get_recent_transactions,
+    get_summary_stats,
+    get_user_by_id,
+)
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
@@ -105,46 +112,91 @@ def logout():
     return redirect(url_for("landing"))
 
 
+def _parse_date_param(value):
+    if not value:
+        return None
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError:
+        return None
+    return value
+
+
+def _month_start(d):
+    return d.replace(day=1)
+
+
+def _months_ago(d, months):
+    month_index = d.month - 1 - months
+    year = d.year + month_index // 12
+    month = month_index % 12 + 1
+    return date(year, month, 1)
+
+
+def _date_presets():
+    today = date.today()
+    return {
+        "month": (_month_start(today).isoformat(), today.isoformat()),
+        "3m": (_months_ago(today, 3).isoformat(), today.isoformat()),
+        "6m": (_months_ago(today, 6).isoformat(), today.isoformat()),
+    }
+
+
 @app.route("/profile")
 def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
+    user_id = session["user_id"]
     name = session.get("user_name", "")
     initials = "".join(part[0].upper() for part in name.split()[:2]) or "?"
 
-    stats = [
-        {"label": "Total spent", "value": "₹5,594.50"},
-        {"label": "Transactions", "value": "8"},
-        {"label": "Top category", "value": "Shopping"},
-    ]
+    date_from = _parse_date_param(request.args.get("date_from"))
+    date_to = _parse_date_param(request.args.get("date_to"))
 
-    transactions = [
-        {"date": "2026-09-05", "description": "Groceries", "category": "Food", "amount": "₹450.00"},
-        {"date": "2026-09-04", "description": "Cab fare", "category": "Transport", "amount": "₹120.50"},
-        {"date": "2026-09-03", "description": "Electricity bill", "category": "Bills", "amount": "₹1,500.00"},
-        {"date": "2026-09-01", "description": "Pharmacy", "category": "Health", "amount": "₹600.00"},
-        {"date": "2026-08-30", "description": "Movie tickets", "category": "Entertainment", "amount": "₹350.00"},
-        {"date": "2026-08-29", "description": "New shoes", "category": "Shopping", "amount": "₹2,200.00"},
+    if date_from and date_to and date_from > date_to:
+        date_from = None
+        date_to = None
+        flash("Start date must be before end date.")
+
+    presets = _date_presets()
+    active_preset = "all"
+    if date_from and date_to:
+        # None means a custom range that doesn't match any preset —
+        # the date inputs (not a preset button) show the active state.
+        active_preset = next(
+            (key for key, value in presets.items() if value == (date_from, date_to)),
+            None,
+        )
+
+    user = get_user_by_id(user_id)
+    summary = get_summary_stats(user_id, date_from=date_from, date_to=date_to)
+    transactions = get_recent_transactions(user_id, limit=10, date_from=date_from, date_to=date_to)
+    breakdown = get_category_breakdown(user_id, date_from=date_from, date_to=date_to)
+
+    stats = [
+        {"label": "Total spent", "value": summary["total_spent"]},
+        {"label": "Transactions", "value": str(summary["transaction_count"])},
+        {"label": "Top category", "value": summary["top_category"]},
     ]
 
     categories = [
-        {"category": "Shopping", "amount": "₹2,200.00", "percent": 39},
-        {"category": "Bills", "amount": "₹1,500.00", "percent": 27},
-        {"category": "Health", "amount": "₹600.00", "percent": 11},
-        {"category": "Food", "amount": "₹450.00", "percent": 8},
-        {"category": "Entertainment", "amount": "₹350.00", "percent": 6},
-        {"category": "Transport", "amount": "₹120.50", "percent": 2},
+        {"category": cat["name"], "amount": cat["amount"], "percent": cat["pct"]}
+        for cat in breakdown
     ]
 
     return render_template(
         "profile.html",
-        email="demo@spendly.com",
-        member_since="August 2026",
+        email=user["email"] if user else "",
+        member_since=user["member_since"] if user else "",
         initials=initials,
         stats=stats,
         transactions=transactions,
         categories=categories,
+        date_from=date_from,
+        date_to=date_to,
+        active_preset=active_preset,
+        presets=presets,
     )
 
 

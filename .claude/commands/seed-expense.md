@@ -37,4 +37,4 @@ Print:
 
 How many expenses were inserted
 The date range they span
-A sample of 5 inserted records
+A sample of 5 inserted records/cre

@@ -7,15 +7,25 @@ def _format_currency(amount):
     return f"₹{amount:,.2f}"
 
 
+def _date_range_clause(date_from, date_to, params):
+    if date_from and date_to:
+        params.extend([date_from, date_to])
+        return " AND date BETWEEN ? AND ?"
+    return ""
+
+
 # --- Subagent 1: get_recent_transactions --- (only this agent edits below, until next marker)
 
-def get_recent_transactions(user_id, limit=10):
+def get_recent_transactions(user_id, limit=10, date_from=None, date_to=None):
+    sql = "SELECT date, description, category, amount FROM expenses WHERE user_id = ?"
+    params = [user_id]
+
+    sql += _date_range_clause(date_from, date_to, params)
+    sql += " ORDER BY date DESC, id DESC LIMIT ?"
+    params.append(limit)
+
     conn = get_db()
-    rows = conn.execute(
-        "SELECT date, description, category, amount FROM expenses "
-        "WHERE user_id = ? ORDER BY date DESC, id DESC LIMIT ?",
-        (user_id, limit),
-    ).fetchall()
+    rows = conn.execute(sql, params).fetchall()
     conn.close()
 
     return [
@@ -31,17 +41,20 @@ def get_recent_transactions(user_id, limit=10):
 
 # --- Subagent 2: get_summary_stats --- (only this agent edits below, until next marker)
 
-def get_summary_stats(user_id):
+def get_summary_stats(user_id, date_from=None, date_to=None):
+    params = [user_id]
+    date_filter = _date_range_clause(date_from, date_to, params)
+
+    total_sql = "SELECT COALESCE(SUM(amount), 0) AS total, COUNT(*) AS count FROM expenses WHERE user_id = ?"
+    total_sql += date_filter
+
+    top_sql = "SELECT category, SUM(amount) AS category_total FROM expenses WHERE user_id = ?"
+    top_sql += date_filter
+    top_sql += " GROUP BY category ORDER BY category_total DESC LIMIT 1"
+
     conn = get_db()
-    total_row = conn.execute(
-        "SELECT COALESCE(SUM(amount), 0) AS total, COUNT(*) AS count FROM expenses WHERE user_id = ?",
-        (user_id,),
-    ).fetchone()
-    top_row = conn.execute(
-        "SELECT category, SUM(amount) AS category_total FROM expenses WHERE user_id = ? "
-        "GROUP BY category ORDER BY category_total DESC LIMIT 1",
-        (user_id,),
-    ).fetchone()
+    total_row = conn.execute(total_sql, params).fetchone()
+    top_row = conn.execute(top_sql, params).fetchone()
     conn.close()
 
     top_category = top_row["category"] if top_row is not None else "—"
@@ -55,13 +68,15 @@ def get_summary_stats(user_id):
 
 # --- Subagent 3: get_category_breakdown --- (only this agent edits below, until next marker)
 
-def get_category_breakdown(user_id):
+def get_category_breakdown(user_id, date_from=None, date_to=None):
+    sql = "SELECT category, SUM(amount) AS category_total FROM expenses WHERE user_id = ?"
+    params = [user_id]
+
+    sql += _date_range_clause(date_from, date_to, params)
+    sql += " GROUP BY category ORDER BY category_total DESC"
+
     conn = get_db()
-    rows = conn.execute(
-        "SELECT category, SUM(amount) AS category_total FROM expenses "
-        "WHERE user_id = ? GROUP BY category ORDER BY category_total DESC",
-        (user_id,),
-    ).fetchall()
+    rows = conn.execute(sql, params).fetchall()
     conn.close()
 
     if not rows:

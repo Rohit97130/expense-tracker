@@ -1,6 +1,7 @@
 import os
+from datetime import date, datetime
 
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from database.db import get_db, init_db, seed_db
@@ -111,6 +112,36 @@ def logout():
     return redirect(url_for("landing"))
 
 
+def _parse_date_param(value):
+    if not value:
+        return None
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError:
+        return None
+    return value
+
+
+def _month_start(d):
+    return d.replace(day=1)
+
+
+def _months_ago(d, months):
+    month_index = d.month - 1 - months
+    year = d.year + month_index // 12
+    month = month_index % 12 + 1
+    return date(year, month, 1)
+
+
+def _date_presets():
+    today = date.today()
+    return {
+        "month": (_month_start(today).isoformat(), today.isoformat()),
+        "3m": (_months_ago(today, 3).isoformat(), today.isoformat()),
+        "6m": (_months_ago(today, 6).isoformat(), today.isoformat()),
+    }
+
+
 @app.route("/profile")
 def profile():
     if not session.get("user_id"):
@@ -120,10 +151,28 @@ def profile():
     name = session.get("user_name", "")
     initials = "".join(part[0].upper() for part in name.split()[:2]) or "?"
 
+    date_from = _parse_date_param(request.args.get("date_from"))
+    date_to = _parse_date_param(request.args.get("date_to"))
+
+    if date_from and date_to and date_from > date_to:
+        date_from = None
+        date_to = None
+        flash("Start date must be before end date.")
+
+    presets = _date_presets()
+    active_preset = "all"
+    if date_from and date_to:
+        # None means a custom range that doesn't match any preset —
+        # the date inputs (not a preset button) show the active state.
+        active_preset = next(
+            (key for key, value in presets.items() if value == (date_from, date_to)),
+            None,
+        )
+
     user = get_user_by_id(user_id)
-    summary = get_summary_stats(user_id)
-    transactions = get_recent_transactions(user_id, limit=10)
-    breakdown = get_category_breakdown(user_id)
+    summary = get_summary_stats(user_id, date_from=date_from, date_to=date_to)
+    transactions = get_recent_transactions(user_id, limit=10, date_from=date_from, date_to=date_to)
+    breakdown = get_category_breakdown(user_id, date_from=date_from, date_to=date_to)
 
     stats = [
         {"label": "Total spent", "value": summary["total_spent"]},
@@ -144,6 +193,10 @@ def profile():
         stats=stats,
         transactions=transactions,
         categories=categories,
+        date_from=date_from,
+        date_to=date_to,
+        active_preset=active_preset,
+        presets=presets,
     )
 
 

@@ -1,0 +1,503 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-13T07:31:27.658Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 1599567,
+      "turns": 61,
+      "files": 17,
+      "netLines": 311,
+      "toolCallsTotal": 68,
+      "toolSuccessRate": 91.2,
+      "totalCostUSD": 2.5369851,
+      "cacheReadCostUSD": 1.3279280999999998,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "rohit_jain3@epam.com",
+    "periodStart": "2026-09-13T06:57:23.340Z",
+    "periodEnd": "2026-09-13T07:24:02.907Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "fc97ff3d-4d7c-431d-9525-94891c3ac99f",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "Read an spec document @.claude\\specs\\06-date-filter-profile.md and come up with an implementation plan.",
+      "project": "C:\\expense-tracker",
+      "branch": "feature/date-filter-profile",
+      "startTime": 1789282643340,
+      "durationMs": 1599567,
+      "turns": 61,
+      "fileOps": 17,
+      "linesAdded": 333,
+      "linesRemoved": 22,
+      "linesModified": 0,
+      "netLines": 311,
+      "filesChanged": 9,
+      "filesWritten": 2,
+      "filesEdited": 7,
+      "toolCallsTotal": 68,
+      "toolCallsSuccess": 62,
+      "toolCallsFailure": 6,
+      "models": [
+        "claude-sonnet-5"
+      ],
+      "languages": [
+        "markdown",
+        "python"
+      ],
+      "tools": [
+        {
+          "toolName": "Read",
+          "totalCalls": 21,
+          "successCount": 20,
+          "failureCount": 1,
+          "successRate": 95.23809523809523
+        },
+        {
+          "toolName": "Bash",
+          "totalCalls": 20,
+          "successCount": 16,
+          "failureCount": 4,
+          "successRate": 80
+        },
+        {
+          "toolName": "Edit",
+          "totalCalls": 10,
+          "successCount": 10,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Grep",
+          "totalCalls": 6,
+          "successCount": 6,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "ExitPlanMode",
+          "totalCalls": 3,
+          "successCount": 2,
+          "failureCount": 1,
+          "successRate": 66.66666666666666
+        },
+        {
+          "toolName": "Glob",
+          "totalCalls": 2,
+          "successCount": 2,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Write",
+          "totalCalls": 2,
+          "successCount": 2,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Agent",
+          "totalCalls": 2,
+          "successCount": 2,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "EnterPlanMode",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Skill",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 12290,
+        "output": 30691,
+        "cacheRead": 4426427,
+        "cacheCreation": 118637,
+        "cacheCreation1h": 118637,
+        "total": 4588045
+      },
+      "costUSD": 2.5369851,
+      "cacheReadCostUSD": 1.3279280999999998,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-5",
+          "tokens": {
+            "input": 12290,
+            "output": 30691,
+            "cacheRead": 4426427,
+            "cacheCreation": 118637,
+            "cacheCreation1h": 118637,
+            "total": 4588045
+          },
+          "costUSD": 2.5369851,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "costSeries": [
+        {
+          "t": 1789282773301,
+          "cost": 0.1087509,
+          "tokens": 74866
+        },
+        {
+          "t": 1789282790198,
+          "cost": 0.2630358,
+          "tokens": 239173
+        },
+        {
+          "t": 1789282817109,
+          "cost": 0.3294804,
+          "tokens": 325625
+        },
+        {
+          "t": 1789282870990,
+          "cost": 0.4282074,
+          "tokens": 502486
+        },
+        {
+          "t": 1789282892534,
+          "cost": 0.492396,
+          "tokens": 594721
+        },
+        {
+          "t": 1789282908583,
+          "cost": 0.5772249,
+          "tokens": 781036
+        },
+        {
+          "t": 1789282915042,
+          "cost": 0.6140496,
+          "tokens": 874957
+        },
+        {
+          "t": 1789282928513,
+          "cost": 0.6890604,
+          "tokens": 1065893
+        },
+        {
+          "t": 1789282943888,
+          "cost": 0.74322,
+          "tokens": 1163877
+        },
+        {
+          "t": 1789282958564,
+          "cost": 0.8161584,
+          "tokens": 1360427
+        },
+        {
+          "t": 1789282970244,
+          "cost": 0.8513412,
+          "tokens": 1459174
+        },
+        {
+          "t": 1789282991629,
+          "cost": 0.9304488,
+          "tokens": 1658604
+        },
+        {
+          "t": 1789283003596,
+          "cost": 0.9671343,
+          "tokens": 1758931
+        },
+        {
+          "t": 1789283043883,
+          "cost": 1.061379,
+          "tokens": 1966028
+        },
+        {
+          "t": 1789283345490,
+          "cost": 1.1413089,
+          "tokens": 2177340
+        },
+        {
+          "t": 1789283361784,
+          "cost": 1.1793336,
+          "tokens": 2283865
+        },
+        {
+          "t": 1789283386062,
+          "cost": 1.2543123,
+          "tokens": 2498010
+        },
+        {
+          "t": 1789283436060,
+          "cost": 1.2875673,
+          "tokens": 2605290
+        },
+        {
+          "t": 1789283458565,
+          "cost": 1.390593,
+          "tokens": 2823552
+        },
+        {
+          "t": 1789283465934,
+          "cost": 1.430475,
+          "tokens": 2933412
+        },
+        {
+          "t": 1789283710618,
+          "cost": 1.5138633,
+          "tokens": 3157664
+        },
+        {
+          "t": 1789283726638,
+          "cost": 1.5618399,
+          "tokens": 3272044
+        },
+        {
+          "t": 1789283876155,
+          "cost": 1.6383873,
+          "tokens": 3502522
+        },
+        {
+          "t": 1789283996245,
+          "cost": 1.6922211,
+          "tokens": 3619687
+        },
+        {
+          "t": 1789284000977,
+          "cost": 1.7914842,
+          "tokens": 3746457
+        },
+        {
+          "t": 1789284006939,
+          "cost": 1.829223,
+          "tokens": 3760896
+        },
+        {
+          "t": 1789284018361,
+          "cost": 1.8786636,
+          "tokens": 3798516
+        },
+        {
+          "t": 1789284106030,
+          "cost": 2.0297913,
+          "tokens": 3853577
+        },
+        {
+          "t": 1789284112173,
+          "cost": 2.0391438,
+          "tokens": 3881246
+        },
+        {
+          "t": 1789284123655,
+          "cost": 2.0667111,
+          "tokens": 3937919
+        },
+        {
+          "t": 1789284128232,
+          "cost": 2.0792973,
+          "tokens": 3966661
+        },
+        {
+          "t": 1789284151159,
+          "cost": 2.1253536,
+          "tokens": 4026269
+        },
+        {
+          "t": 1789284156707,
+          "cost": 2.148966,
+          "tokens": 4057335
+        },
+        {
+          "t": 1789284179919,
+          "cost": 2.2273104,
+          "tokens": 4209101
+        },
+        {
+          "t": 1789284184309,
+          "cost": 2.2972614,
+          "tokens": 4220483
+        },
+        {
+          "t": 1789284189305,
+          "cost": 2.3617551,
+          "tokens": 4354761
+        },
+        {
+          "t": 1789284195767,
+          "cost": 2.3965668,
+          "tokens": 4373298
+        },
+        {
+          "t": 1789284209663,
+          "cost": 2.4421254,
+          "tokens": 4418115
+        },
+        {
+          "t": 1789284214610,
+          "cost": 2.4523566,
+          "tokens": 4441111
+        },
+        {
+          "t": 1789284242907,
+          "cost": 2.5369851,
+          "tokens": 4588045
+        }
+      ],
+      "dispatches": [
+        {
+          "kind": "command",
+          "name": "seed-expense",
+          "start": 1789283335913,
+          "durationMs": 0
+        },
+        {
+          "kind": "command",
+          "name": "agents-observe:observe",
+          "start": 1789283638909,
+          "durationMs": 0
+        },
+        {
+          "kind": "command",
+          "name": "agents-observe:observe",
+          "start": 1789283721160,
+          "durationMs": 0
+        },
+        {
+          "kind": "skill",
+          "name": "test-feature",
+          "start": 1789283876155,
+          "durationMs": 107867,
+          "costUSD": 0.0358704,
+          "tokens": {
+            "input": 2,
+            "output": 80,
+            "cacheRead": 115188,
+            "cacheCreation": 18,
+            "cacheCreation1h": 18,
+            "total": 115288
+          }
+        },
+        {
+          "kind": "agent",
+          "name": "spendly-test-writer",
+          "start": 1789283996245,
+          "durationMs": 670,
+          "costUSD": 0.4407726,
+          "tokens": {
+            "input": 28,
+            "output": 10733,
+            "cacheRead": 310372,
+            "cacheCreation": 31097,
+            "cacheCreation1h": 31097,
+            "total": 352230
+          },
+          "tools": [
+            {
+              "name": "Read",
+              "calls": 10
+            },
+            {
+              "name": "Glob",
+              "calls": 2
+            },
+            {
+              "name": "Write",
+              "calls": 2
+            },
+            {
+              "name": "Grep",
+              "calls": 2
+            },
+            {
+              "name": "Edit",
+              "calls": 2
+            }
+          ]
+        },
+        {
+          "kind": "agent",
+          "name": "spendly-test-runner",
+          "start": 1789284179919,
+          "durationMs": 807,
+          "costUSD": 0.2085645,
+          "tokens": {
+            "input": 14,
+            "output": 2488,
+            "cacheRead": 110415,
+            "cacheCreation": 23013,
+            "cacheCreation1h": 23013,
+            "total": 135930
+          },
+          "tools": [
+            {
+              "name": "Bash",
+              "calls": 6
+            },
+            {
+              "name": "Read",
+              "calls": 4
+            },
+            {
+              "name": "Grep",
+              "calls": 1
+            }
+          ]
+        }
+      ],
+      "skillInvocations": [
+        {
+          "name": "test-feature",
+          "totalCalls": 3,
+          "successCount": 3,
+          "failureCount": 0
+        }
+      ],
+      "agentInvocations": [
+        {
+          "name": "spendly-test-writer",
+          "totalCalls": 3,
+          "successCount": 3,
+          "failureCount": 0
+        },
+        {
+          "name": "spendly-test-runner",
+          "totalCalls": 2,
+          "successCount": 2,
+          "failureCount": 0
+        }
+      ],
+      "commandInvocations": [
+        {
+          "name": "agents-observe:observe",
+          "totalCalls": 9,
+          "successCount": 9,
+          "failureCount": 0
+        },
+        {
+          "name": "seed-expense",
+          "totalCalls": 7,
+          "successCount": 7,
+          "failureCount": 0
+        }
+      ],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

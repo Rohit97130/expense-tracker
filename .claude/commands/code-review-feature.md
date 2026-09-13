@@ -25,7 +25,7 @@ running code review."
 
 ---
 
-## Step 1: Parallel Review
+## Step 1: Parallel   
 
 Invoke both subagents simultaneously with the same 
 context:
